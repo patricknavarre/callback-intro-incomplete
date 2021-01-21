@@ -21,26 +21,29 @@ const first = function (array, n) {
 }
 
 const last = function(array, n) {
-  let result = [];
   if(n === undefined){
-    return array.length;
+    return array[array.length -1];
+  } else if (n === 0) {
+    return [];
+  } else if(n > array.length) {
+    return array;
+  } else {
+    return array.splice(n - 1)
   }
-    for (let i = 0; i < n; i++){
-      if(i < array.length){
-        result.push(array[i]);
-      }
-    }
-    return result;
-  }
-
-// const last = function(array, n) {
-//   return array.slice(-1, n).join(' ');
-// }
+}
 
 
 // executes the callback function "iterator" on each element in the array
 const each = function (collection, iterator) {
-  return collection.forEach(iterator)
+  if (collection instanceof Array) {
+    for (let i = 0; i < collection.length; i++){
+      iterator(collection[i], i, collection);
+    }
+  }else {
+    for (let prop in collection){
+      iterator(collection[prop], prop, collection);
+    }
+  }
 };
 
 const indexOf = function (array, target) {
@@ -50,6 +53,8 @@ const indexOf = function (array, target) {
 const map = function (collection, iterator) {
   return collection.map(iterator)
 };
+
+
 
 module.exports = {
   identity,
