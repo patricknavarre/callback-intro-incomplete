@@ -4,8 +4,6 @@ const identity = function (value) {
   return value;
 };
 
-
-
 const first = function (array, n) {
   // create an empty array
   let result = []; 
