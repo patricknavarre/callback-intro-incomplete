@@ -21,12 +21,17 @@ const first = function (array, n) {
 }
 
 const last = function(array, n) {
+  // checking to see if n is undefined
   if(n === undefined){
+    // if it is than get the last index in the array
     return array[array.length -1];
+    // if n is equal to 0 return the array
   } else if (n === 0) {
     return [];
+    // if n is greater than the array length return the array
   } else if(n > array.length) {
     return array;
+    // if it isn't than splice the last index in the array
   } else {
     return array.splice(n - 1)
   }
@@ -46,14 +51,24 @@ const each = function (collection, iterator) {
   }
 };
 
+// return the first index at which a given target can be found in the array.
 const indexOf = function (array, target) {
   return array.indexOf(target)
-  
-};
-const map = function (collection, iterator) {
-  return collection.map(iterator)
 };
 
+// const map = function (collection, iterator) {
+//   return collection.map(iterator)
+// };
+
+const map = (collection, iterator) => {
+  let result = [];
+  //  loop through the collection and perform the iterator on each index
+  for (let i = 0; i < collection.length; i++) {
+    // push the result of that into the result array
+    result.push(iterator(collection[i]))
+  }
+  return result
+};
 
 
 module.exports = {
